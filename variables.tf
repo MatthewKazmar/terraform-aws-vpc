@@ -8,7 +8,7 @@ variable "cidr_block" {
   type        = string
 
   validation {
-    condition     = split("/", var.cidrblock)[1] == "24"
+    condition     = split("/", var.cidr_block)[1] == "24"
     error_message = "This module needs a /24."
   }
 }
