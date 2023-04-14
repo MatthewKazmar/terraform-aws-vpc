@@ -41,7 +41,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "this" {
 }
 
 data "aws_ec2_transit_gateway_route_tables" "this" {
-  count = var.tgw_id && var.network_domain ? 1 : 0
+  count = local.use_network_domain
 
   filter {
     name   = "transit-gateway-id"
