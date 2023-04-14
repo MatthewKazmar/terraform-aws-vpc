@@ -36,3 +36,8 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+locals {
+  use_tgw            = var.tgw_id == null ? 0 : 1
+  use_network_domain = var.tgw_id == null ? 0 : var.network_domain == null ? 0 : 1
+}
