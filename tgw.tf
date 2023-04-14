@@ -46,10 +46,9 @@ data "aws_ec2_transit_gateway_route_tables" "this" {
   filter {
     name   = "transit-gateway-id"
     values = [var.tgw_id]
-
-    tags = {
-      Network_Domain = var.network_domain
-    }
+  }
+  tags = {
+    Network_Domain = var.network_domain
   }
 }
 
@@ -57,12 +56,12 @@ resource "aws_ec2_transit_gateway_route_table_association" "this" {
   count = var.tgw_id && var.network_domain ? 1 : 0
 
   transit_gateway_attachment_id  = one(aws_ec2_transit_gateway_vpc_attachment.this).id
-  transit_gateway_route_table_id = one(data.aws_ec2_transit_gateway_route_table.this).id
+  transit_gateway_route_table_id = one(data.aws_ec2_transit_gateway_route_tables.this).id
 }
 
 resource "aws_ec2_transit_gateway_route_table_propagation" "this" {
   count = var.tgw_id && var.network_domain ? 1 : 0
 
   transit_gateway_attachment_id  = one(aws_ec2_transit_gateway_vpc_attachment.this).id
-  transit_gateway_route_table_id = one(data.aws_ec2_transit_gateway_route_table.this).id
+  transit_gateway_route_table_id = one(data.aws_ec2_transit_gateway_route_tables.this).id
 }

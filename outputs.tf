@@ -5,12 +5,12 @@ output "vpc" {
 
 output "subnet_workload" {
   description = "The AWS Subnet resource for Workload."
-  value       = aws_subnet.workload.this
+  value       = aws_subnet.workload
 }
 
 output "subnet_tgw" {
   description = "The AWS Subnet resource for TGW."
-  value       = aws_subnet.tgw.this
+  value       = aws_subnet.tgw
 }
 
 output "security_group" {
