@@ -13,7 +13,7 @@ output "aws_subnet_tgw" {
   value       = aws_subnet.tgw.this
 }
 
-output "aws_security_group"{
+output "aws_security_group" {
   description = "The AWS Security Group resource."
-  value = aws_security_group.this
+  value       = aws_security_group.this
 }

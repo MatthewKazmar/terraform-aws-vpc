@@ -8,13 +8,31 @@ variable "cidr_block" {
   type        = string
 
   validation {
-    condition     = split("/", var.supernet)[1] == "24"
+    condition     = split("/", var.cidrblock)[1] == "24"
     error_message = "This module needs a /24."
   }
 }
 
+variable "tgw_id" {
+  description = "ID of AWS TGW. Leave blank to skip attaching to the TGW."
+  type        = string
+  default     = null
+}
+
+variable "network_domain" {
+  description = "Network Domain name. Specifies Route Table. Don't specify to use default TGW table."
+  type        = string
+  default     = null
+}
+
+variable "propagate" {
+  description = "Propagate VPC CIDRs to the specified Network Domain."
+  type        = bool
+  default     = true
+}
+
 variable "tags" {
-  description = "Map of tags to apply to the instance."
+  description = "Map of tags to apply to the resource."
   type        = map(string)
   default     = {}
 }
