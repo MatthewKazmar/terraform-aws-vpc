@@ -33,21 +33,21 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "this" {
   transit_gateway_default_route_table_propagation = false
 
   tags = merge({
-    Name           = var.name
+    Name = var.name
     },
     var.tags
   )
 }
 
 resource "aws_ec2_transit_gateway_route_table_association" "this" {
-  count = var.use_tgw  ? 1 : 0
+  count = var.use_tgw ? 1 : 0
 
   transit_gateway_attachment_id  = one(aws_ec2_transit_gateway_vpc_attachment.this).id
   transit_gateway_route_table_id = var.route_table_id
 }
 
 resource "aws_ec2_transit_gateway_route_table_propagation" "this" {
-  count = var.use_tgw && var.propogate ? 1 : 0
+  count = var.use_tgw && var.propagate ? 1 : 0
 
   transit_gateway_attachment_id  = one(aws_ec2_transit_gateway_vpc_attachment.this).id
   transit_gateway_route_table_id = var.route_table_id
