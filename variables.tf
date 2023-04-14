@@ -21,8 +21,8 @@ variable "tgw_id" {
 
 variable "use_tgw" {
   description = "TGW attachment?"
-  type = bool
-  default = true
+  type        = bool
+  default     = true
 }
 
 variable "route_table_id" {

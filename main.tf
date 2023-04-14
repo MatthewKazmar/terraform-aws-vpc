@@ -9,7 +9,7 @@ data "http" "myip" {
 resource "aws_vpc" "this" {
   cidr_block = var.cidr_block
   tags = merge({
-    Name           = var.name
+    Name = var.name
     },
     var.tags
   )
@@ -64,7 +64,7 @@ resource "aws_subnet" "workload" {
   availability_zone = data.aws_availability_zones.this.names[count.index]
 
   tags = merge({
-    Name           = var.name
+    Name = var.name
     },
     var.tags
   )
@@ -78,7 +78,7 @@ resource "aws_subnet" "tgw" {
   availability_zone = data.aws_availability_zones.this.names[count.index]
 
   tags = merge({
-    Name           = var.name
+    Name = var.name
     },
     var.tags
   )
