@@ -19,8 +19,14 @@ variable "tgw_id" {
   default     = null
 }
 
-variable "network_domain" {
-  description = "Network Domain name. Specifies Route Table. Don't specify to use default TGW table."
+variable "use_tgw" {
+  description = "TGW attachment?"
+  type = bool
+  default = true
+}
+
+variable "route_table_id" {
+  description = "Transit Gateway Route Table ID"
   type        = string
   default     = null
 }
@@ -35,9 +41,4 @@ variable "tags" {
   description = "Map of tags to apply to the resource."
   type        = map(string)
   default     = {}
-}
-
-locals {
-  use_tgw            = var.tgw_id == null ? 0 : 1
-  use_network_domain = var.tgw_id == null ? 0 : var.network_domain == null ? 0 : 1
 }
