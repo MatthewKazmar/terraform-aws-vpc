@@ -1,5 +1,5 @@
 resource "aws_route" "rfc_10" {
-  count = var.use_tgw ? 1 : 0
+  count = var.tgw == null ? 0 : 1
 
   route_table_id         = aws_vpc.this.default_route_table_id
   destination_cidr_block = "10.0.0.0/8"
