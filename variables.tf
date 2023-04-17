@@ -50,6 +50,8 @@ variable "tags" {
 }
 
 locals {
+  use_tgw = length(var.tgw_id[*])
+  
   network_domain_name = var.network_domain_name == null ? {} : { Network_Domain = var.network_domain_name }
 
   tags = merge(
