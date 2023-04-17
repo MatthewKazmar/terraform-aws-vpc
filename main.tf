@@ -8,7 +8,7 @@ data "http" "myip" {
 
 resource "aws_vpc" "this" {
   cidr_block = var.cidr_block
-  tags = local.tags
+  tags       = local.tags
 }
 
 resource "aws_internet_gateway" "this" {

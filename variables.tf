@@ -6,7 +6,7 @@ variable "name" {
 variable "network_domain_name" {
   description = "Name of Network Domain."
   type        = string
-  default = null
+  default     = null
 }
 
 variable "cidr_block" {
@@ -23,7 +23,7 @@ variable "tgw_attachment" {
   description = "Details of TGW attachment."
   type = object(
     {
-      id = string,
+      tgw_id                     = string,
       association_route_table_id = string,
       propagation_route_table_id = optional(string)
     }
