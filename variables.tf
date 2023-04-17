@@ -25,16 +25,16 @@ variable "use_tgw" {
   default     = true
 }
 
-variable "route_table_id" {
-  description = "Transit Gateway Route Table ID"
+variable "association_route_table_id" {
+  description = "Associate VPC to this route table id."
   type        = string
   default     = null
 }
 
-variable "propagate" {
-  description = "Propagate VPC CIDRs to the specified Network Domain."
-  type        = bool
-  default     = true
+variable "propagation_route_table_id" {
+  description = "Propagate VPC CIDR to this route table id, if different than the association."
+  type        = string
+  default     = null
 }
 
 variable "tags" {
