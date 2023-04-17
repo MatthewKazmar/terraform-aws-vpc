@@ -8,11 +8,7 @@ data "http" "myip" {
 
 resource "aws_vpc" "this" {
   cidr_block = var.cidr_block
-  tags = merge({
-    Name = var.name
-    },
-    var.tags
-  )
+  tags = local.tags
 }
 
 resource "aws_internet_gateway" "this" {
@@ -49,11 +45,8 @@ resource "aws_security_group" "this" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge({
-    Name = var.name
-    },
-    var.tags
-  )
+  tags = local.tags
+
 }
 
 resource "aws_subnet" "workload" {
@@ -63,11 +56,7 @@ resource "aws_subnet" "workload" {
   cidr_block        = cidrsubnet(var.cidr_block, 3, count.index)
   availability_zone = data.aws_availability_zones.this.names[count.index]
 
-  tags = merge({
-    Name = var.name
-    },
-    var.tags
-  )
+  tags = local.vpc_tags
 }
 
 resource "aws_subnet" "tgw" {
@@ -77,9 +66,5 @@ resource "aws_subnet" "tgw" {
   cidr_block        = cidrsubnet(var.cidr_block, 3, count.index + 2)
   availability_zone = data.aws_availability_zones.this.names[count.index]
 
-  tags = merge({
-    Name = var.name
-    },
-    var.tags
-  )
+  tags = local.tgw_tags
 }

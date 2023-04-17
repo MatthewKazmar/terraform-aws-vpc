@@ -32,11 +32,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "this" {
   transit_gateway_default_route_table_association = false
   transit_gateway_default_route_table_propagation = false
 
-  tags = merge({
-    Name = var.name
-    },
-    var.tags
-  )
+  tags = local.tags
 }
 
 resource "aws_ec2_transit_gateway_route_table_association" "this" {
