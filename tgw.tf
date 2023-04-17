@@ -1,9 +1,10 @@
 resource "aws_route" "rfc_10" {
-  count = local.use_tgw
+  count = var.tgw_attachment == null ? 0 : 1
 
   route_table_id         = aws_vpc.this.default_route_table_id
   destination_cidr_block = "10.0.0.0/8"
-  transit_gateway_id     = var.tgw_id
+  # transit_gateway_id     = var.tgw_id
+  transit_gateway_id = var.tgw_attachment["id"]
 }
 
 resource "aws_route" "rfc_172" {

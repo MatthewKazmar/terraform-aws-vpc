@@ -19,29 +19,41 @@ variable "cidr_block" {
   }
 }
 
-variable "tgw_id" {
-  description = "ID of AWS TGW. Leave blank to skip attaching to the TGW."
-  type        = string
-  default     = null
+variable "tgw_attachment" {
+  description = "Details of TGW attachment."
+  type = object(
+    {
+      id = string,
+      association_route_table_id = string,
+      propagation_route_table_id = optional(string)
+    }
+  )
+  default = null
 }
 
-variable "use_tgw" {
-  description = "TGW attachment?"
-  type        = bool
-  default     = true
-}
+# variable "tgw_id" {
+#   description = "ID of AWS TGW. Leave blank to skip attaching to the TGW."
+#   type        = string
+#   default     = null
+# }
 
-variable "association_route_table_id" {
-  description = "Associate VPC to this route table id."
-  type        = string
-  default     = null
-}
+# variable "use_tgw" {
+#   description = "TGW attachment?"
+#   type        = bool
+#   default     = true
+# }
 
-variable "propagation_route_table_id" {
-  description = "Propagate VPC CIDR to this route table id, if different than the association."
-  type        = string
-  default     = null
-}
+# variable "association_route_table_id" {
+#   description = "Associate VPC to this route table id."
+#   type        = string
+#   default     = null
+# }
+
+# variable "propagation_route_table_id" {
+#   description = "Propagate VPC CIDR to this route table id, if different than the association."
+#   type        = string
+#   default     = null
+# }
 
 variable "tags" {
   description = "Map of tags to apply to the resource."
@@ -50,8 +62,8 @@ variable "tags" {
 }
 
 locals {
-  use_tgw = length(var.tgw_id[*])
-  
+
+
   network_domain_name = var.network_domain_name == null ? {} : { Network_Domain = var.network_domain_name }
 
   tags = merge(
