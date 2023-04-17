@@ -56,7 +56,7 @@ resource "aws_subnet" "workload" {
   cidr_block        = cidrsubnet(var.cidr_block, 3, count.index)
   availability_zone = data.aws_availability_zones.this.names[count.index]
 
-  tags = local.vpc_tags
+  tags = local.workload_tags
 }
 
 resource "aws_subnet" "tgw" {
