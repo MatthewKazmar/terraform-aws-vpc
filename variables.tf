@@ -31,30 +31,6 @@ variable "tgw_attachment" {
   default = null
 }
 
-# variable "tgw_id" {
-#   description = "ID of AWS TGW. Leave blank to skip attaching to the TGW."
-#   type        = string
-#   default     = null
-# }
-
-# variable "use_tgw" {
-#   description = "TGW attachment?"
-#   type        = bool
-#   default     = true
-# }
-
-# variable "association_route_table_id" {
-#   description = "Associate VPC to this route table id."
-#   type        = string
-#   default     = null
-# }
-
-# variable "propagation_route_table_id" {
-#   description = "Propagate VPC CIDR to this route table id, if different than the association."
-#   type        = string
-#   default     = null
-# }
-
 variable "tags" {
   description = "Map of tags to apply to the resource."
   type        = map(string)
